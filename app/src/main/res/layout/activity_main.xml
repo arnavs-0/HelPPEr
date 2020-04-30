@@ -16,6 +16,7 @@
         android:text="Arnav Shah"
         android:textAlignment="center"
         android:textColor="#2196F3"
+        android:transitionName="logo_text"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
