@@ -3,7 +3,9 @@ package com.arnav.covid_19hackathonapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -15,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
     Animation topAnim, bottomAnim;
     ImageView logo;
     TextView name, overview;
+
+    //Opening screen lasts for 5 seconds
+    private static int SPLASH_SCREEN = 5000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +41,16 @@ public class MainActivity extends AppCompatActivity {
         logo.setAnimation(topAnim);
         name.setAnimation(bottomAnim);
         overview.setAnimation(topAnim);
+
+        //Change Screen
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, Dashboard.class);
+                startActivity(intent);
+                finish();
+            }
+        }, SPLASH_SCREEN);
 
     }
 }
