@@ -49,6 +49,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:transitionName="username_tran"
             app:boxBackgroundColor="#FFFFFF">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -66,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:boxBackgroundColor="#FFFFFF"
+            android:transitionName="password_tran"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -96,7 +98,8 @@
             android:layout_marginBottom="5dp"
             android:background="#006EC5"
             android:text="GO"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:transitionName="go_tran" />
 
         <Button
             android:id="@+id/signup_access"
@@ -107,7 +110,8 @@
             android:background="#000000"
             android:elevation="0dp"
             android:text="New User? Sign Up"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:transitionName="login_signup_tran" />
     </LinearLayout>
 
 
