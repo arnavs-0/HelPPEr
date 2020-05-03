@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.arnav.covid_19hackathonapp.R;
 
-public class OptionsRequest extends AppCompatActivity {
+public class OptionsCreate extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_options_request);
+        setContentView(R.layout.activity_options_create);
     }
 }

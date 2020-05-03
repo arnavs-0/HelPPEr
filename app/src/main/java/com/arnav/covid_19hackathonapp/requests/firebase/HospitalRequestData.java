@@ -1,16 +1,17 @@
-package com.arnav.covid_19hackathonapp.donations.firebase;
+package com.arnav.covid_19hackathonapp.requests.firebase;
 
-public class FirebaseShieldData {
-    String address, apartment, city, state, zipcode, amount, comments;
+public class HospitalRequestData {
+    String address, suite, city, state, hospital, amount, comments, what;
 
-    public FirebaseShieldData(String address, String apartment, String city, String state, String zipcode, String amount, String comments) {
+    public HospitalRequestData(String address, String suite, String city, String state, String hospital, String amount, String comments, String what) {
         this.address = address;
-        this.apartment = apartment;
+        this.suite = suite;
         this.state = state;
         this.city = city;
-        this.zipcode = zipcode;
+        this.hospital = hospital;
         this.amount = amount;
         this.comments = comments;
+        this.what = what;
     }
 
     public String getAddress() {
@@ -22,11 +23,11 @@ public class FirebaseShieldData {
     }
 
     public String getApartment() {
-        return apartment;
+        return suite;
     }
 
     public void setApartment(String apartment) {
-        this.apartment = apartment;
+        this.suite = apartment;
     }
 
     public String getCity() {
@@ -45,12 +46,12 @@ public class FirebaseShieldData {
         this.state = state;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getHospital() {
+        return hospital;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
 
     public String getAmount() {
@@ -67,5 +68,13 @@ public class FirebaseShieldData {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public String getWhat() {
+        return what;
+    }
+
+    public void setWhat(String what) {
+        this.what = what;
     }
 }

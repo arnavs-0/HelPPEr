@@ -9,11 +9,11 @@ import android.widget.Button;
 
 import com.arnav.covid_19hackathonapp.R;
 import com.arnav.covid_19hackathonapp.donations.forms.FacemaskDonation;
+import com.arnav.covid_19hackathonapp.donations.forms.OtherDonation;
 import com.arnav.covid_19hackathonapp.donations.forms.ShieldDonation;
 
 public class OptionsDonate extends AppCompatActivity {
-    Button facemask;
-    Button shield;
+    Button facemask, shield, other;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class OptionsDonate extends AppCompatActivity {
 
         facemask = findViewById(R.id.mask_form);
         shield = findViewById(R.id.shield_forms);
+        other = findViewById(R.id.other_form);
 
         facemask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +36,13 @@ public class OptionsDonate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ShieldDonation.class);
+                startActivity(intent);
+            }
+        });
+        other.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), OtherDonation.class);
                 startActivity(intent);
             }
         });

@@ -1,15 +1,15 @@
 package com.arnav.covid_19hackathonapp.donations.firebase;
 
 public class FirebaseOtherData {
-    String address, apartment, city, state, zipcode, facemasks, comments, what;
+    String address, apartment, city, state, zipcode, amount, comments, what;
 
-    public FirebaseOtherData(String address, String apartment, String city, String state, String zipcode, String facemasks, String comments, String what) {
+    public FirebaseOtherData(String address, String apartment, String city, String state, String zipcode, String amount, String comments, String what) {
         this.address = address;
         this.apartment = apartment;
         this.state = state;
         this.city = city;
         this.zipcode = zipcode;
-        this.facemasks = facemasks;
+        this.amount = amount;
         this.comments = comments;
         this.what = what;
     }
@@ -54,12 +54,12 @@ public class FirebaseOtherData {
         this.zipcode = zipcode;
     }
 
-    public String getFacemasks() {
-        return facemasks;
+    public String getAmount() {
+        return amount;
     }
 
-    public void setFacemasks(String facemasks) {
-        this.facemasks = facemasks;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public String getComments() {

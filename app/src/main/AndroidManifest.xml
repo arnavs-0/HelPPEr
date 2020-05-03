@@ -12,11 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".requests.forms.HospitalRequest" />
         <activity android:name=".donations.forms.OtherDonation" />
         <activity android:name=".donations.forms.ShieldDonation" />
         <activity android:name=".donations.forms.FacemaskDonation" />
-        <activity android:name=".requests.OptionsCreate" />
-        <activity android:name=".create.OptionsRequest" />
+        <activity android:name=".create.OptionsCreate" />
+        <activity android:name=".requests.OptionsRequest" />
         <activity android:name=".donations.OptionsDonate" />
         <activity android:name=".Categories" />
         <activity android:name=".auth.SignUp" />

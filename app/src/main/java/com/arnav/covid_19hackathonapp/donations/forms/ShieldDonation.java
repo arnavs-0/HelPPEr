@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 
 import com.arnav.covid_19hackathonapp.R;
-import com.arnav.covid_19hackathonapp.donations.firebase.FirebaseFacemaskData;
 import com.arnav.covid_19hackathonapp.donations.firebase.FirebaseShieldData;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 public class ShieldDonation extends AppCompatActivity {
-    TextInputLayout addressdon, apartmentdon, statedon, zipcodedon, facemasksdon, commentsdon, citydon, phonedon;
+    TextInputLayout addressdon, apartmentdon, statedon, zipcodedon, amountdon, commentsdon, citydon, phonedon;
     Button submitdon;
     CheckBox dropdon, shipdon, volunteerdon;
     CardView cardview;
@@ -38,7 +37,7 @@ public class ShieldDonation extends AppCompatActivity {
         apartmentdon = findViewById(R.id.apt_shield_donation);
         statedon = findViewById(R.id.state_shield_donation);
         zipcodedon = findViewById(R.id.zip_shield_donation);
-        facemasksdon = findViewById(R.id.amount_shield_donation);
+        amountdon = findViewById(R.id.amount_shield_donation);
         commentsdon = findViewById(R.id.comments_shield);
         submitdon = findViewById(R.id.submit_shield);
         dropdon = findViewById(R.id.drop_shield);
@@ -62,13 +61,13 @@ public class ShieldDonation extends AppCompatActivity {
                 String address = addressdon.getEditText().getText().toString();
                 String apartment = apartmentdon.getEditText().getText().toString();
                 String state = statedon.getEditText().getText().toString();
-                String facemasks = facemasksdon.getEditText().getText().toString();
+                String amount = amountdon.getEditText().getText().toString();
                 String comments = commentsdon.getEditText().getText().toString();
                 String city = citydon.getEditText().getText().toString();
                 String zipcode = zipcodedon.getEditText().getText().toString();
                 final String phone = phonedon.getEditText().getText().toString();
 
-                final FirebaseShieldData shieldData = new FirebaseShieldData(address, apartment, facemasks, city, zipcode, state, comments);
+                final FirebaseShieldData shieldData = new FirebaseShieldData(address, apartment, amount, city, zipcode, state, comments);
 
                 authref.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -148,13 +147,13 @@ public class ShieldDonation extends AppCompatActivity {
     }
 
     private Boolean validateNumber() {
-        String value = facemasksdon.getEditText().getText().toString();
+        String value = amountdon.getEditText().getText().toString();
         if (value.isEmpty()) {
-            facemasksdon.setError("Field Is Required");
+            amountdon.setError("Field Is Required");
             return false;
         } else {
-            facemasksdon.setError(null);
-            facemasksdon.setErrorEnabled(false);
+            amountdon.setError(null);
+            amountdon.setErrorEnabled(false);
             return true;
         }
     }

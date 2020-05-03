@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 
 import com.arnav.covid_19hackathonapp.R;
-import com.arnav.covid_19hackathonapp.donations.firebase.FirebaseFacemaskData;
 import com.arnav.covid_19hackathonapp.donations.firebase.FirebaseOtherData;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 public class OtherDonation extends AppCompatActivity {
-    TextInputLayout addressdon, apartmentdon, statedon, zipcodedon, facemasksdon, commentsdon, citydon, phonedon, whatdon;
+    TextInputLayout addressdon, apartmentdon, statedon, zipcodedon, amountdon, commentsdon, citydon, phonedon, whatdon;
     Button submitdon;
     CheckBox dropdon, shipdon, volunteerdon;
     CardView cardview;
@@ -38,7 +37,7 @@ public class OtherDonation extends AppCompatActivity {
         apartmentdon = findViewById(R.id.apt_other_donation);
         statedon = findViewById(R.id.state_other_donation);
         zipcodedon = findViewById(R.id.zip_other_donation);
-        facemasksdon = findViewById(R.id.amount_other_donation);
+        amountdon = findViewById(R.id.amount_other_donation);
         commentsdon = findViewById(R.id.comments_other);
         submitdon = findViewById(R.id.submit_other);
         dropdon = findViewById(R.id.drop_other);
@@ -63,14 +62,14 @@ public class OtherDonation extends AppCompatActivity {
                 String address = addressdon.getEditText().getText().toString();
                 String apartment = apartmentdon.getEditText().getText().toString();
                 String state = statedon.getEditText().getText().toString();
-                String facemasks = facemasksdon.getEditText().getText().toString();
+                String amount = amountdon.getEditText().getText().toString();
                 String comments = commentsdon.getEditText().getText().toString();
                 String city = citydon.getEditText().getText().toString();
                 String zipcode = zipcodedon.getEditText().getText().toString();
                 String what = whatdon.getEditText().getText().toString();
                 final String phone = phonedon.getEditText().getText().toString();
 
-                final FirebaseOtherData otherData = new FirebaseOtherData(address, apartment, facemasks, city, zipcode, state, comments, what);
+                final FirebaseOtherData otherData = new FirebaseOtherData(address, apartment, amount, city, zipcode, state, comments, what);
 
                 authref.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -150,13 +149,13 @@ public class OtherDonation extends AppCompatActivity {
     }
 
     private Boolean validateNumber() {
-        String value = facemasksdon.getEditText().getText().toString();
+        String value = amountdon.getEditText().getText().toString();
         if (value.isEmpty()) {
-            facemasksdon.setError("Field Is Required");
+            amountdon.setError("Field Is Required");
             return false;
         } else {
-            facemasksdon.setError(null);
-            facemasksdon.setErrorEnabled(false);
+            amountdon.setError(null);
+            amountdon.setErrorEnabled(false);
             return true;
         }
     }
