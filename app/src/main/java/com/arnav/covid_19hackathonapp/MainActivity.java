@@ -15,6 +15,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.arnav.covid_19hackathonapp.auth.Login;
+
 public class MainActivity extends AppCompatActivity {
     //Variables in Use
     Animation topAnim, bottomAnim;

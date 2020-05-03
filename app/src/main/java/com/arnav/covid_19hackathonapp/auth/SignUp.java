@@ -1,4 +1,4 @@
-package com.arnav.covid_19hackathonapp;
+package com.arnav.covid_19hackathonapp.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,9 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
 
+import com.arnav.covid_19hackathonapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -55,7 +54,9 @@ public class SignUp extends AppCompatActivity {
                 reference.child(phoneNumber).setValue(userStorage);
 
                 Intent intent = new Intent(getApplicationContext(), Login.class);
-                //intent.putExtra("phoneNumber", phoneNumber);
+                intent.putExtra("phoneNumber", phoneNumber);
+                intent.putExtra("email", email);
+                intent.putExtra("name", name);
                 startActivity(intent);
                 finish();
 

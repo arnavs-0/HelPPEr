@@ -1,8 +1,10 @@
-package com.arnav.covid_19hackathonapp;
+package com.arnav.covid_19hackathonapp.create;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.arnav.covid_19hackathonapp.R;
 
 public class OptionsRequest extends AppCompatActivity {
 

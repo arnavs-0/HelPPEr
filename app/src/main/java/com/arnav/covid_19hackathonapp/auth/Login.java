@@ -1,4 +1,4 @@
-package com.arnav.covid_19hackathonapp;
+package com.arnav.covid_19hackathonapp.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.arnav.covid_19hackathonapp.Categories;
+import com.arnav.covid_19hackathonapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.arnav.covid_19hackathonapp">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,13 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OptionsCreate"></activity>
-        <activity android:name=".OptionsRequest" />
-        <activity android:name=".OptionsDonate" />
+        <activity android:name=".donations.forms.ShieldDonation"></activity>
+        <activity android:name=".donations.forms.FacemaskDonation" />
+        <activity android:name=".requests.OptionsCreate" />
+        <activity android:name=".create.OptionsRequest" />
+        <activity android:name=".donations.OptionsDonate" />
         <activity android:name=".Categories" />
-        <activity android:name=".Empty" />
-        <activity android:name=".SignUp" />
-        <activity android:name=".Login" />
+        <activity android:name=".auth.SignUp" />
+        <activity android:name=".auth.Login" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

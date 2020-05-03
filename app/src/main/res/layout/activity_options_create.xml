@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".OptionsCreate">
+    tools:context=".requests.OptionsCreate">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                     android:textSize="30sp" />
 
                 <Button
-                    android:id="@+id/mask_form"
+                    android:id="@+id/create_mask"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -103,7 +103,7 @@
                     android:textSize="30sp" />
 
                 <Button
-                    android:id="@+id/shield_forms"
+                    android:id="@+id/create_shield"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -138,7 +138,7 @@
                     android:textSize="30sp" />
 
                 <Button
-                    android:id="@+id/other_form"
+                    android:id="@+id/create_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

@@ -1,10 +1,7 @@
-package com.arnav.covid_19hackathonapp;
+package com.arnav.covid_19hackathonapp.auth;
 
 public class FirebaseUserStorage {
     String name, username, email, phoneNumber, password;
-
-    public FirebaseUserStorage() {
-    }
 
     public FirebaseUserStorage(String name, String username, String email, String phoneNumber, String password) {
         this.name = name;
