@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".donations.forms.ShieldDonation"></activity>
+        <activity android:name=".donations.forms.OtherDonation" />
+        <activity android:name=".donations.forms.ShieldDonation" />
         <activity android:name=".donations.forms.FacemaskDonation" />
         <activity android:name=".requests.OptionsCreate" />
         <activity android:name=".create.OptionsRequest" />
