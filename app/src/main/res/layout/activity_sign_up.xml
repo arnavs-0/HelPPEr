@@ -49,7 +49,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name">
+            android:hint="Full Name/Organization">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -122,7 +122,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/go_reg"
+        android:id="@+id/registerUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -133,7 +133,7 @@
         android:transitionName="go_tran" />
 
     <Button
-        android:id="@+id/sign_up"
+        android:id="@+id/sign_up_to_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="right"

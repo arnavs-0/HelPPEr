@@ -99,6 +99,7 @@
             android:background="#006EC5"
             android:text="GO"
             android:textColor="#FFFFFF"
+            android:onClick="loginUser"
             android:transitionName="go_tran" />
 
         <Button
