@@ -138,7 +138,7 @@
                     android:textSize="30sp" />
 
                 <Button
-                    android:id="@+id/other_request"
+                    android:id="@+id/other_request_s"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

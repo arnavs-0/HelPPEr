@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.arnav.covid_19hackathonapp.create.OptionsCreate;
 import com.arnav.covid_19hackathonapp.requests.OptionsRequest;
 import com.arnav.covid_19hackathonapp.donations.OptionsDonate;
 
@@ -42,7 +43,7 @@ public class Categories extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), OptionsRequest.class);
+                Intent intent = new Intent(getApplicationContext(), OptionsCreate.class);
                 startActivity(intent);
             }
         });

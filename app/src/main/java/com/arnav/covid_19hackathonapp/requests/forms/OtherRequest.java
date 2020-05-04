@@ -7,8 +7,7 @@ import android.widget.Button;
 
 import com.arnav.covid_19hackathonapp.R;
 import com.arnav.covid_19hackathonapp.RequestCompletion;
-import com.arnav.covid_19hackathonapp.donations.firebase.FirebaseOtherData;
-import com.arnav.covid_19hackathonapp.requests.firebase.HospitalRequestData;
+import com.arnav.covid_19hackathonapp.requests.firebase.OtherRequestData;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,8 +18,8 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HospitalRequest extends AppCompatActivity {
-    TextInputLayout addressreq, suitereq, statereq, hospitalreq, amountreq, commentsreq, cityreq, phonereq, whatreq;
+public class OtherRequest extends AppCompatActivity {
+    TextInputLayout addressreq, suitereq, statereq, namereq, amountreq, commentsreq, cityreq, phonereq, whatreq;
     Button submitreq;
 
     FirebaseDatabase database;
@@ -29,19 +28,19 @@ public class HospitalRequest extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hospital_request);
+        setContentView(R.layout.activity_other_request);
 
         //Hooks
-        addressreq = findViewById(R.id.street_address_hospital);
-        suitereq = findViewById(R.id.suite_hospital);
-        statereq = findViewById(R.id.state_hospital);
-        hospitalreq = findViewById(R.id.hospital_name);
-        amountreq = findViewById(R.id.amount_hospital);
-        commentsreq = findViewById(R.id.comments_hospital);
-        submitreq = findViewById(R.id.submit_hospital);
-        cityreq = findViewById(R.id.city_hospital);
-        phonereq = findViewById(R.id.phone_hospital);
-        whatreq = findViewById(R.id.what_hospital);
+        addressreq = findViewById(R.id.street_address_other_request);
+        suitereq = findViewById(R.id.suite_other);
+        statereq = findViewById(R.id.state_request);
+        namereq = findViewById(R.id.name_other);
+        amountreq = findViewById(R.id.amount_other_request);
+        commentsreq = findViewById(R.id.comments_other_request);
+        submitreq = findViewById(R.id.submit_other_request);
+        cityreq = findViewById(R.id.city_other_request);
+        phonereq = findViewById(R.id.phone_other_request);
+        whatreq = findViewById(R.id.what_other);
 
         submitreq.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +50,7 @@ public class HospitalRequest extends AppCompatActivity {
                 }
                 database = FirebaseDatabase.getInstance();
                 authref = database.getReference("Users");
-                reference = database.getReference("HospitalRequest");
+                reference = database.getReference("OtherRequest");
 
 
                 String address = addressreq.getEditText().getText().toString();
@@ -60,11 +59,11 @@ public class HospitalRequest extends AppCompatActivity {
                 String amount = amountreq.getEditText().getText().toString();
                 String comments = commentsreq.getEditText().getText().toString();
                 String city = cityreq.getEditText().getText().toString();
-                String hospital = hospitalreq.getEditText().getText().toString();
+                String hospital = namereq.getEditText().getText().toString();
                 String what = whatreq.getEditText().getText().toString();
                 final String phone = phonereq.getEditText().getText().toString();
 
-                final HospitalRequestData hospitalData = new HospitalRequestData(address, suite, amount, city, hospital, state, comments, what);
+                final OtherRequestData otherData = new OtherRequestData(address, suite, amount, city, hospital, state, comments, what);
 
                 authref.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -76,7 +75,7 @@ public class HospitalRequest extends AppCompatActivity {
                             reference.child(phoneNumberFromDB).child("Name").setValue(nameFromDB);
                             reference.child(phoneNumberFromDB).child("Phone_Number").setValue(phoneNumberFromDB);
                             reference.child(phoneNumberFromDB).child("Email").setValue(emailFromDB);
-                            reference.child(phoneNumberFromDB).setValue(hospitalData);
+                            reference.child(phoneNumberFromDB).setValue(otherData);
 
                             Intent intent = new Intent(getApplicationContext(), RequestCompletion.class);
                             startActivity(intent);
@@ -171,13 +170,13 @@ public class HospitalRequest extends AppCompatActivity {
 
 
     private Boolean validateHospital() {
-        String value = hospitalreq.getEditText().getText().toString();
+        String value = namereq.getEditText().getText().toString();
         if (value.isEmpty()) {
-            hospitalreq.setError("Field Is Required");
+            namereq.setError("Field Is Required");
             return false;
         } else {
-            hospitalreq.setError(null);
-            hospitalreq.setErrorEnabled(false);
+            namereq.setError(null);
+            namereq.setErrorEnabled(false);
             return true;
         }
     }
