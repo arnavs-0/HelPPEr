@@ -1,13 +1,12 @@
 package com.arnav.covid_19hackathonapp.create;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.arnav.covid_19hackathonapp.DonationSitesList;
 import com.arnav.covid_19hackathonapp.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class FacemaskCreate extends AppCompatActivity {
 
@@ -15,7 +14,7 @@ public class FacemaskCreate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facemask_create);
-        WebView webView = (WebView) findViewById(R.id.facemask_create);
+        WebView webView = findViewById(R.id.facemask_create);
 
         webView.setWebViewClient(new FacemaskCreate.MyWebViewClient());
         String url = "https://www.chop.edu/how-make-homemade-diy-face-mask";
