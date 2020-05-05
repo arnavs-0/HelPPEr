@@ -3,7 +3,7 @@ PPE Donation and Request Service during the COVID-19 Pandemic. Incorporation of 
 
 ## Getting Started
 
-Download the APK file to start using on your Android Device
+In progress
 
 ### Prerequisites
 
@@ -12,13 +12,13 @@ Must be at least Marshmello (6.0) with an API level of 23
 
 ### Installing
 
-Download the APK and reference this article: [APK Download](https://www.wikihow.com/Install-APK-Files-from-a-PC-on-Android)
-
+Work In Progress
 
 ## Built With
 
 * [Firebase](https://firebase.google.com/) - Database
 * [Maven](https://maven.apache.org/) - Dependency Management
+* [Android Studio](https://developer.android.com/studio) - IDE
 
 
 ## Authors
