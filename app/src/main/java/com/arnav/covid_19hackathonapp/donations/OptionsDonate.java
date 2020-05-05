@@ -1,7 +1,5 @@
 package com.arnav.covid_19hackathonapp.donations;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +9,8 @@ import com.arnav.covid_19hackathonapp.R;
 import com.arnav.covid_19hackathonapp.donations.forms.FacemaskDonation;
 import com.arnav.covid_19hackathonapp.donations.forms.OtherDonation;
 import com.arnav.covid_19hackathonapp.donations.forms.ShieldDonation;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class OptionsDonate extends AppCompatActivity {
     Button facemask, shield, other;

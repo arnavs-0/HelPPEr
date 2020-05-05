@@ -7,7 +7,6 @@ import android.widget.Button;
 
 import com.arnav.covid_19hackathonapp.R;
 import com.arnav.covid_19hackathonapp.RequestCompletion;
-import com.arnav.covid_19hackathonapp.donations.firebase.FirebaseOtherData;
 import com.arnav.covid_19hackathonapp.requests.firebase.HospitalRequestData;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;

@@ -1,10 +1,10 @@
 package com.arnav.covid_19hackathonapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class DonationSitesList extends AppCompatActivity {
 
@@ -12,7 +12,7 @@ public class DonationSitesList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation_sites_list);
-        WebView webView = (WebView) findViewById(R.id.donation_map);
+        WebView webView = findViewById(R.id.donation_map);
 
         webView.setWebViewClient(new MyWebViewClient());
         String url = "https://findthemasks.com/give.html";

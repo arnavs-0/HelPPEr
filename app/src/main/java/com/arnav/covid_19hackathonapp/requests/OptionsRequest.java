@@ -1,7 +1,5 @@
 package com.arnav.covid_19hackathonapp.requests;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +10,11 @@ import com.arnav.covid_19hackathonapp.requests.forms.FirstRespondersRequest;
 import com.arnav.covid_19hackathonapp.requests.forms.HospitalRequest;
 import com.arnav.covid_19hackathonapp.requests.forms.OtherRequest;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class OptionsRequest extends AppCompatActivity {
     Button hospital, first, other;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,15 +1,15 @@
 package com.arnav.covid_19hackathonapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.arnav.covid_19hackathonapp.create.OptionsCreate;
-import com.arnav.covid_19hackathonapp.requests.OptionsRequest;
 import com.arnav.covid_19hackathonapp.donations.OptionsDonate;
+import com.arnav.covid_19hackathonapp.requests.OptionsRequest;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Categories extends AppCompatActivity {
     Button donate, request, create, sites;

@@ -1,7 +1,5 @@
 package com.arnav.covid_19hackathonapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
@@ -17,14 +15,15 @@ import android.widget.TextView;
 
 import com.arnav.covid_19hackathonapp.auth.Login;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
+    //Opening screen lasts for 5 seconds
+    private static int SPLASH_SCREEN = 5000;
     //Variables in Use
     Animation topAnim, bottomAnim;
     ImageView logo;
     TextView name, overview;
-
-    //Opening screen lasts for 5 seconds
-    private static int SPLASH_SCREEN = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         //Animation for the Loading Screen
         Context context;
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
-        bottomAnim = AnimationUtils.loadAnimation( this, R.anim.bottom_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         //Hooks
         logo = findViewById(R.id.logo);

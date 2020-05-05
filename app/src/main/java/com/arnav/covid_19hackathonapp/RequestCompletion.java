@@ -1,8 +1,8 @@
 package com.arnav.covid_19hackathonapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class RequestCompletion extends AppCompatActivity {
 

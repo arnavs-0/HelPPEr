@@ -1,9 +1,5 @@
 package com.arnav.covid_19hackathonapp.donations.forms;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +15,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class FacemaskDonation extends AppCompatActivity {
     TextInputLayout addressdon, apartmentdon, statedon, zipcodedon, facemasksdon, commentsdon, citydon, phonedon;
