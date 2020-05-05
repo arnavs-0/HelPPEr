@@ -6,16 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arnav.covid_19hackathonapp.Categories;
 import com.arnav.covid_19hackathonapp.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,21 +34,19 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 public class Login extends AppCompatActivity {
-    Button callSignUp, callGo;
+    private static final String TAG = "Login";
     ImageView image;
     TextView logo_text, slogan_text;
-    TextInputLayout username, password;
-    String passwordFromDB;
-
-
-    Query checkUser;
-    DatabaseReference reference;
+    Button callSignUp, callGo, callForget;
+    TextInputLayout email, password;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
+        mAuth = FirebaseAuth.getInstance();
 
         //Hooks for Ids
         callSignUp = findViewById(R.id.signup_access);
@@ -48,8 +54,9 @@ public class Login extends AppCompatActivity {
         image = findViewById(R.id.logo_image);
         logo_text = findViewById(R.id.logo_name);
         slogan_text = findViewById(R.id.slogan_name);
-        username = findViewById(R.id.username);
+        email = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        callForget = findViewById(R.id.forget);
 
 
         callSignUp.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +69,7 @@ public class Login extends AppCompatActivity {
                 pairs[0] = new Pair<View, String>(image, "logo_image");
                 pairs[1] = new Pair<View, String>(logo_text, "logo_text");
                 pairs[2] = new Pair<View, String>(slogan_text, "logo desc");
-                pairs[3] = new Pair<View, String>(username, "username_tran");
+                pairs[3] = new Pair<View, String>(email, "username_tran");
                 pairs[4] = new Pair<View, String>(password, "password_tran");
                 pairs[5] = new Pair<View, String>(callGo, "go_tran");
                 pairs[6] = new Pair<View, String>(callSignUp, "login_signup_tran");
@@ -75,75 +82,90 @@ public class Login extends AppCompatActivity {
 
 
         });
-    }
 
-    private Boolean validateUsername() {
-        String val = username.getEditText().getText().toString();
-        if (val.isEmpty()) {
-            username.setError("Field is Empty");
-            return false;
-        } else {
-            username.setError(null);
-            username.setErrorEnabled(false);
-            return true;
-        }
-    }
 
-    private Boolean validatePassword() {
-        String val = password.getEditText().getText().toString();
-        if (val.isEmpty()) {
-            password.setError("Field is Empty");
-            return false;
-        } else {
-            password.setError(null);
-            password.setErrorEnabled(false);
-            return true;
-        }
-    }
-
-    public void loginUser(View view) {
-        //Validate Login Info
-        if (!validateUsername() | !validatePassword()) {
-            return;
-        } else {
-            isUser();
-        }
-    }
-
-    private void isUser() {
-        //progressBar.setVisibility(View.VISIBLE);
-        final String userEnteredUsername = Objects.requireNonNull(username.getEditText()).getText().toString().trim();
-        final String userEnteredPassword = Objects.requireNonNull(password.getEditText()).getText().toString().trim();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-        checkUser = reference.orderByChild("username").equalTo(userEnteredUsername);
-        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+        callGo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    username.setError(null);
-                    username.setErrorEnabled(false);
-                    passwordFromDB = dataSnapshot.child(userEnteredUsername).child("password").getValue(String.class);
-                    assert passwordFromDB != null;
-                    if (passwordFromDB != userEnteredPassword) {
-                        username.setError(null);
-                        username.setErrorEnabled(false);
-                        Intent intent = new Intent(getApplicationContext(), Categories.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        password.setError("Wrong Password");
-                        password.requestFocus();
-                    }
-                } else {
-                    username.setError("No such User exist");
-                    username.requestFocus();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onClick(View v) {
+                signInUser();
             }
         });
+
+        callForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                forgetPassword();
+            }
+        });
+
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    public void updateUI(FirebaseUser user) {
+        if (user != null) {
+            Toast.makeText(this, "You Signed In successfully", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), Categories.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Username or Password Incorrect", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void signInUser() {
+
+        String emailAuth, passwordAuth;
+        emailAuth = email.getEditText().getText().toString();
+        passwordAuth = password.getEditText().getText().toString();
+        if (TextUtils.isEmpty(emailAuth)) {
+            Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(passwordAuth)) {
+            Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        mAuth.signInWithEmailAndPassword(emailAuth, passwordAuth)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(Login.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+                            updateUI(null);
+                        }
+                    }
+                });
+    }
+
+    private void forgetPassword() {
+        String emailForger;
+        emailForger = email.getEditText().getText().toString();
+        if (TextUtils.isEmpty(emailForger)) {
+            Toast.makeText(getApplicationContext(), "Enter your email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        FirebaseAuth.getInstance().sendPasswordResetEmail(emailForger)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Email sent.");
+                            Toast.makeText(Login.this, "Email Sent", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
 }

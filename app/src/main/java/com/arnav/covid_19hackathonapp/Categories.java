@@ -12,7 +12,7 @@ import com.arnav.covid_19hackathonapp.requests.OptionsRequest;
 import com.arnav.covid_19hackathonapp.donations.OptionsDonate;
 
 public class Categories extends AppCompatActivity {
-    Button donate, request, create;
+    Button donate, request, create, sites;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class Categories extends AppCompatActivity {
         donate = findViewById(R.id.donate_options);
         request = findViewById(R.id.request_options);
         create = findViewById(R.id.create_options);
+        sites = findViewById(R.id.donation_sites);
 
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +45,13 @@ public class Categories extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), OptionsCreate.class);
+                startActivity(intent);
+            }
+        });
+        sites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DonationSitesList.class);
                 startActivity(intent);
             }
         });

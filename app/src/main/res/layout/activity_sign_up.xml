@@ -63,7 +63,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
+            android:hint="Donator or Requester"
             android:textColor="#000000"
             android:transitionName="username_tran"
             app:counterMaxLength="15">

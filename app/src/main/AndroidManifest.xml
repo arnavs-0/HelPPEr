@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RequestCompletion"></activity>
+        <activity android:name=".create.OtherCreate"></activity>
+        <activity android:name=".create.ShieldCreate" />
+        <activity android:name=".create.FacemaskCreate" />
+        <activity android:name=".DonationSitesList" />
+        <activity android:name=".RequestCompletion" />
         <activity android:name=".DonationCompletion" />
         <activity android:name=".requests.forms.OtherRequest" />
         <activity android:name=".requests.forms.FirstRespondersRequest" />

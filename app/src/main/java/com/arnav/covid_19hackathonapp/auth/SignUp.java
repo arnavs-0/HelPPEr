@@ -1,28 +1,41 @@
 package com.arnav.covid_19hackathonapp.auth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.arnav.covid_19hackathonapp.Categories;
 import com.arnav.covid_19hackathonapp.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
+    private static final String TAG = "SignUp";
     TextInputLayout regName, regUser, regEmail, regPhone, regPassword;
     Button regBtn, regToLoginBtn;
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        mAuth = FirebaseAuth.getInstance();
 
         //Hooks
         regName = findViewById(R.id.name);
@@ -36,32 +49,61 @@ public class SignUp extends AppCompatActivity {
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!validateName() | !validatePassword() | !validatePhone() | !validateEmail() | !validateUser()) {
+                if (!validateName() | !validatePhone() | !validateUser() | !validateEmail() | !validatePassword()) {
                     return;
                 }
-                rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference("Users");
-
-                //Get all values
-                String name = regName.getEditText().getText().toString();
-                String username = regUser.getEditText().getText().toString();
-                String password = regPassword.getEditText().getText().toString();
-                String email = regEmail.getEditText().getText().toString();
-                String phoneNumber = regPhone.getEditText().getText().toString();
-
-
-                FirebaseUserStorage userStorage = new FirebaseUserStorage(name, username, email, phoneNumber, password);
-                reference.child(phoneNumber).setValue(userStorage);
-
-                Intent intent = new Intent(getApplicationContext(), Login.class);
-                intent.putExtra("phoneNumber", phoneNumber);
-                intent.putExtra("email", email);
-                intent.putExtra("name", name);
-                startActivity(intent);
-                finish();
+                validateAuth();
 
             }
         });
+    }
+
+    private void validateAuth() {
+        String emailAuth, passwordAuth;
+        emailAuth = regEmail.getEditText().getText().toString();
+        passwordAuth = regPassword.getEditText().getText().toString();
+
+        if (TextUtils.isEmpty(emailAuth)) {
+            Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(passwordAuth)) {
+            Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        mAuth.createUserWithEmailAndPassword(emailAuth, passwordAuth)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            rootNode = FirebaseDatabase.getInstance();
+                            reference = rootNode.getReference("Users");
+
+                            //Get all values
+                            String name = regName.getEditText().getText().toString();
+                            String occ = regUser.getEditText().getText().toString();
+                            String password = regPassword.getEditText().getText().toString();
+                            String email = regEmail.getEditText().getText().toString();
+                            String phoneNumber = regPhone.getEditText().getText().toString();
+
+
+                            FirebaseUserStorage userStorage = new FirebaseUserStorage(name, occ, email, phoneNumber, password);
+                            reference.child(phoneNumber).setValue(userStorage);
+
+
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(SignUp.this, "Auth Failed", Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
+
+
     }
 
     private Boolean validateName() {
@@ -101,9 +143,13 @@ public class SignUp extends AppCompatActivity {
 
     private Boolean validatePassword() {
         String val = regPassword.getEditText().getText().toString();
+        int length = val.length();
 
         if (val.isEmpty()) {
             regPassword.setError("Field cannot be empty");
+            return false;
+        } else if (length < 6) {
+            regPassword.setError("Password must be at least 6 Characters");
             return false;
         } else {
             regPassword.setError(null);
@@ -139,6 +185,17 @@ public class SignUp extends AppCompatActivity {
             regPhone.setError(null);
             regPhone.setErrorEnabled(false);
             return true;
+        }
+    }
+
+    public void updateUI(FirebaseUser user) {
+        if (user != null) {
+            Toast.makeText(this, "You Registered Successfully", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Error Please Try Again", Toast.LENGTH_LONG).show();
         }
     }
 }
