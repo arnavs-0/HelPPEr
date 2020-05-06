@@ -71,19 +71,19 @@ public class OtherDonation extends AppCompatActivity {
                 String what = whatdon.getEditText().getText().toString();
                 final String phone = phonedon.getEditText().getText().toString();
 
-                final FirebaseOtherData otherData = new FirebaseOtherData(address, apartment, amount, city, zipcode, state, comments, what);
+                final FirebaseOtherData otherData = new FirebaseOtherData(address, apartment, city, state, zipcode, amount, comments, what);
 
                 authref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            String nameFromDB = dataSnapshot.child("name").getValue(String.class);
+                            String nameFromDB = dataSnapshot.child(phone).child("name").getValue(String.class);
                             String phoneNumberFromDB = dataSnapshot.child(phone).child("phoneNumber").getValue(String.class);
-                            String emailFromDB = dataSnapshot.child("email").getValue(String.class);
+                            String emailFromDB = dataSnapshot.child(phone).child("email").getValue(String.class);
+                            reference.child(phoneNumberFromDB).setValue(otherData);
                             reference.child(phoneNumberFromDB).child("Name").setValue(nameFromDB);
                             reference.child(phoneNumberFromDB).child("Phone_Number").setValue(phoneNumberFromDB);
                             reference.child(phoneNumberFromDB).child("Email").setValue(emailFromDB);
-                            reference.child(phoneNumberFromDB).setValue(otherData);
                             if (dropdon.isChecked()) {
                                 reference.child(phoneNumberFromDB).child("Drop_Off").setValue("Yes");
                             } else {

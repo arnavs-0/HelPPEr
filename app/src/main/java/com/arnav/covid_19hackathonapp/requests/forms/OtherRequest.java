@@ -63,26 +63,25 @@ public class OtherRequest extends AppCompatActivity {
                 String what = whatreq.getEditText().getText().toString();
                 final String phone = phonereq.getEditText().getText().toString();
 
-                final OtherRequestData otherData = new OtherRequestData(address, suite, amount, city, hospital, state, comments, what);
+                final OtherRequestData otherData = new OtherRequestData(address, suite, city, state, hospital, amount, comments, what);
 
                 authref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            String nameFromDB = dataSnapshot.child("name").getValue(String.class);
+                            String nameFromDB = dataSnapshot.child(phone).child("name").getValue(String.class);
                             String phoneNumberFromDB = dataSnapshot.child(phone).child("phoneNumber").getValue(String.class);
-                            String emailFromDB = dataSnapshot.child("email").getValue(String.class);
+                            String emailFromDB = dataSnapshot.child(phone).child("email").getValue(String.class);
+                            reference.child(phoneNumberFromDB).setValue(otherData);
                             reference.child(phoneNumberFromDB).child("Name").setValue(nameFromDB);
                             reference.child(phoneNumberFromDB).child("Phone_Number").setValue(phoneNumberFromDB);
                             reference.child(phoneNumberFromDB).child("Email").setValue(emailFromDB);
-                            reference.child(phoneNumberFromDB).setValue(otherData);
 
                             Intent intent = new Intent(getApplicationContext(), RequestCompletion.class);
                             startActivity(intent);
                             finish();
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
