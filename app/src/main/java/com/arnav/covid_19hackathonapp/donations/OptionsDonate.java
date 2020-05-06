@@ -23,7 +23,7 @@ public class OptionsDonate extends AppCompatActivity {
         facemask = findViewById(R.id.mask_form);
         shield = findViewById(R.id.shield_forms);
         other = findViewById(R.id.other_form);
-
+        //open activity base on option
         facemask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

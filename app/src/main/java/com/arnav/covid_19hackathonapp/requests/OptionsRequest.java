@@ -23,7 +23,7 @@ public class OptionsRequest extends AppCompatActivity {
         hospital = findViewById(R.id.hospital_form);
         first = findViewById(R.id.first_responders_forms);
         other = findViewById(R.id.other_request_s);
-
+        //open activity based on button
         hospital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

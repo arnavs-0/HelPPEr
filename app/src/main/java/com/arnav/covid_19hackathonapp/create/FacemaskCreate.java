@@ -21,7 +21,7 @@ public class FacemaskCreate extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
     }
-
+    //open webpage in app
     private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {

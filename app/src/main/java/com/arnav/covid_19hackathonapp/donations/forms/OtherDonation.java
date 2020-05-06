@@ -53,6 +53,7 @@ public class OtherDonation extends AppCompatActivity {
         submitdon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //validate
                 if (!validateAddress() || !validateApartment() || !validateState() || !validateNumber() || !validateComments() || !validateCity() || !validateOption() || !validateZip()) {
                     return;
                 }
@@ -72,7 +73,7 @@ public class OtherDonation extends AppCompatActivity {
                 final String phone = phonedon.getEditText().getText().toString();
 
                 final FirebaseOtherData otherData = new FirebaseOtherData(address, apartment, city, state, zipcode, amount, comments, what);
-
+                //add data
                 authref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -38,6 +38,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
+        //Get firebase auth
         mAuth = FirebaseAuth.getInstance();
 
         //Hooks for Ids
@@ -50,12 +51,12 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.password);
         callForget = findViewById(R.id.forget);
 
-
+        //Sign Up button Clicked
         callSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Login.this, SignUp.class);
-
+                // Create an Animation to transition to the Sign Up page
                 Pair[] pairs = new Pair[7];
 
                 pairs[0] = new Pair<View, String>(image, "logo_image");
@@ -65,7 +66,7 @@ public class Login extends AppCompatActivity {
                 pairs[4] = new Pair<View, String>(password, "password_tran");
                 pairs[5] = new Pair<View, String>(callGo, "go_tran");
                 pairs[6] = new Pair<View, String>(callSignUp, "login_signup_tran");
-
+                //Start Acticvity
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Login.this, pairs);
                 startActivity(intent, options.toBundle());
                 finish();
@@ -75,14 +76,14 @@ public class Login extends AppCompatActivity {
 
         });
 
-
+        //When the Login Button is CLicked
         callGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signInUser();
             }
         });
-
+        //Whe the forget password is clicked
         callForget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,14 +92,14 @@ public class Login extends AppCompatActivity {
         });
 
     }
-
+    //Automatic Sign In
     @Override
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
-
+    //If sign in is successful or not
     public void updateUI(FirebaseUser user) {
         if (user != null) {
             Toast.makeText(this, "You Signed In successfully", Toast.LENGTH_LONG).show();
@@ -115,6 +116,7 @@ public class Login extends AppCompatActivity {
         String emailAuth, passwordAuth;
         emailAuth = email.getEditText().getText().toString();
         passwordAuth = password.getEditText().getText().toString();
+        //If either field is empty set error to enter email/password
         if (TextUtils.isEmpty(emailAuth)) {
             Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
             return;
@@ -123,6 +125,7 @@ public class Login extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
             return;
         }
+        //Use firebase auth method
         mAuth.signInWithEmailAndPassword(emailAuth, passwordAuth)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
@@ -140,7 +143,7 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
-
+    //If the person forgets their password, reset password will be sent via email
     private void forgetPassword() {
         String emailForger;
         emailForger = email.getEditText().getText().toString();

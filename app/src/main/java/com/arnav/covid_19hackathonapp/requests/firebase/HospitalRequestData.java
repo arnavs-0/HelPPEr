@@ -2,7 +2,7 @@ package com.arnav.covid_19hackathonapp.requests.firebase;
 
 public class HospitalRequestData {
     String address, suite, city, state, hospital, amount, comments, what;
-
+    //info to put in database
     public HospitalRequestData(String address, String suite, String city, String state, String hospital, String amount, String comments, String what) {
         this.address = address;
         this.suite = suite;

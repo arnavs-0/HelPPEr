@@ -24,7 +24,7 @@ public class Categories extends AppCompatActivity {
         request = findViewById(R.id.request_options);
         create = findViewById(R.id.create_options);
         sites = findViewById(R.id.donation_sites);
-
+        //open activity based on option chosen
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

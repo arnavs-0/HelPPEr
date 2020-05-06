@@ -45,6 +45,7 @@ public class OtherRequest extends AppCompatActivity {
         submitreq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //validate
                 if (!validateAddress() || !validateApartment() || !validateState() || !validateNumber() || !validateComments() || !validateCity() || !validateHospital()) {
                     return;
                 }
@@ -64,7 +65,7 @@ public class OtherRequest extends AppCompatActivity {
                 final String phone = phonereq.getEditText().getText().toString();
 
                 final OtherRequestData otherData = new OtherRequestData(address, suite, city, state, hospital, amount, comments, what);
-
+                //add data
                 authref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

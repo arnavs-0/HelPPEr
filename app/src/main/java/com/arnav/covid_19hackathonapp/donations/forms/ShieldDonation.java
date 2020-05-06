@@ -52,6 +52,7 @@ public class ShieldDonation extends AppCompatActivity {
         submitdon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //validate
                 if (!validateAddress() || !validateApartment() || !validateState() || !validateNumber() || !validateComments() || !validateCity() || !validateOption() || !validateZip()) {
                     return;
                 }
@@ -70,7 +71,7 @@ public class ShieldDonation extends AppCompatActivity {
                 final String phone = phonedon.getEditText().getText().toString();
 
                 final FirebaseShieldData shieldData = new FirebaseShieldData(address, apartment, city, state, zipcode, amount, comments);
-
+                //add data
                 authref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

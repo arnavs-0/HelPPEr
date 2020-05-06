@@ -20,7 +20,7 @@ public class OptionsCreate extends AppCompatActivity {
         facemask = findViewById(R.id.create_mask);
         shield = findViewById(R.id.create_shield);
         other = findViewById(R.id.create_other);
-
+        //move to different actvities based what button is clicked
         facemask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

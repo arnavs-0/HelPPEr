@@ -2,7 +2,7 @@ package com.arnav.covid_19hackathonapp.donations.firebase;
 
 public class FirebaseShieldData {
     String address, apartment, city, state, zipcode, amount, comments;
-
+    //add data to database
     public FirebaseShieldData(String address, String apartment, String city, String state, String zipcode, String amount, String comments) {
         this.address = address;
         this.apartment = apartment;

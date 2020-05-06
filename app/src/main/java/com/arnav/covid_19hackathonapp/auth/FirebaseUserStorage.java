@@ -2,7 +2,7 @@ package com.arnav.covid_19hackathonapp.auth;
 
 public class FirebaseUserStorage {
     String name, username, email, phoneNumber, password;
-
+    //Store User Data during registration
     public FirebaseUserStorage(String name, String username, String email, String phoneNumber, String password) {
         this.name = name;
         this.username = username;

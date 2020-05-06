@@ -52,6 +52,7 @@ public class FacemaskDonation extends AppCompatActivity {
         submitdon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //validate form
                 if (!validateAddress() || !validateApartment() || !validateState() || !validateNumber() || !validateComments() || !validateCity() || !validateOption() || !validateZip()) {
                     return;
                 }
@@ -68,9 +69,9 @@ public class FacemaskDonation extends AppCompatActivity {
                 String city = citydon.getEditText().getText().toString();
                 String zipcode = zipcodedon.getEditText().getText().toString();
                 final String phone = phonedon.getEditText().getText().toString();
-
+                //send values to databse
                 final FirebaseFacemaskData faceMaskData = new FirebaseFacemaskData(address, apartment, city, state, zipcode, facemasks, comments);
-
+                //add info to database
                 authref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -34,6 +34,7 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        //Get firebase auth
         mAuth = FirebaseAuth.getInstance();
 
         //Hooks
@@ -44,19 +45,21 @@ public class SignUp extends AppCompatActivity {
         regPhone = findViewById(R.id.phoneNo);
         regBtn = findViewById(R.id.registerUser);
         regToLoginBtn = findViewById(R.id.sign_up_to_in);
-
+        //If register button is clicked
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //make sure everything is valid
                 if (!validateName() | !validatePhone() | !validateUser() | !validateEmail() | !validatePassword()) {
                     return;
                 }
+                //validate user
                 validateAuth();
 
             }
         });
     }
-
+    //Make sure nothing is empty
     private void validateAuth() {
         String emailAuth, passwordAuth;
         emailAuth = regEmail.getEditText().getText().toString();
@@ -70,7 +73,7 @@ public class SignUp extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
             return;
         }
-
+        // create user
         mAuth.createUserWithEmailAndPassword(emailAuth, passwordAuth)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -117,18 +120,12 @@ public class SignUp extends AppCompatActivity {
             return true;
         }
     }
-
+    //validate user
     private Boolean validateUser() {
         String userval = regUser.getEditText().getText().toString();
         String noWhiteSpace = "\\A\\w{4,20}\\z";
         if (userval.isEmpty()) {
             regUser.setError("Field is Empty");
-            return false;
-        } else if (userval.length() >= 15) {
-            regUser.setError("Username is too Long");
-            return false;
-        } else if (userval.length() <= 4) {
-            regUser.setError("Username is too Short");
             return false;
         } else if (!userval.matches(noWhiteSpace)) {
             regUser.setError("White Spaces are not allowed");
@@ -139,7 +136,7 @@ public class SignUp extends AppCompatActivity {
             return true;
         }
     }
-
+    //validate password
     private Boolean validatePassword() {
         String val = regPassword.getEditText().getText().toString();
         int length = val.length();
@@ -156,7 +153,7 @@ public class SignUp extends AppCompatActivity {
             return true;
         }
     }
-
+    //validate enaul
     private Boolean validateEmail() {
         String val = regEmail.getEditText().getText().toString();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -173,7 +170,7 @@ public class SignUp extends AppCompatActivity {
             return true;
         }
     }
-
+    //validate phone number
     private Boolean validatePhone() {
         String val = regPhone.getEditText().getText().toString();
 
@@ -186,7 +183,7 @@ public class SignUp extends AppCompatActivity {
             return true;
         }
     }
-
+    //if auth is successful move to new activity
     public void updateUI(FirebaseUser user) {
         if (user != null) {
             Toast.makeText(this, "You Registered Successfully", Toast.LENGTH_LONG).show();

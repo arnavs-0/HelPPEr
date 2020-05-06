@@ -2,7 +2,7 @@ package com.arnav.covid_19hackathonapp.donations.firebase;
 
 public class FirebaseFacemaskData {
     String address, apartment, city, state, zipcode, facemasks, comments;
-
+    //add data to database
     public FirebaseFacemaskData(String address, String apartment, String city, String state, String zipcode, String facemasks, String comments) {
         this.address = address;
         this.apartment = apartment;
