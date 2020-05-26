@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,138 +9,205 @@
     android:padding="20dp"
     tools:context=".auth.SignUp">
 
-    <ImageView
-        android:id="@+id/logo_image_reg"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/helpper_small"
-        android:transitionName="logo_image" />
-
-    <TextView
-        android:id="@+id/logo_text_reg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-35dp"
-        android:fontFamily="@font/bungee"
-        android:text="Welcome!"
-        android:textColor="#006EC5"
-        android:textSize="40sp"
-        android:transitionName="logo_text" />
-
-    <TextView
-        android:id="@+id/slogan_reg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Sign Up to Continue"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:transitionName="logo_desc" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        <ImageView
+            android:id="@+id/logo_image_reg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/helpper_small"
+            android:transitionName="logo_image" />
+
+        <TextView
+            android:id="@+id/logo_text_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-35dp"
+            android:fontFamily="@font/bungee"
+            android:text="Welcome!"
+            android:textColor="#006EC5"
+            android:textSize="40sp"
+            android:transitionName="logo_text" />
+
+        <TextView
+            android:id="@+id/slogan_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Sign Up to Continue"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:transitionName="logo_desc" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name/Organization">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="#000000" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Full Name/Organization">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/username_reg"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username_reg"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Donator or Requester"
+                android:textColor="#000000"
+                android:transitionName="username_tran"
+                app:counterMaxLength="15">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneNo"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile Phone Number (for Contact)">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_reg"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:transitionName="password_tran"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/policy_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Donator or Requester"
-            android:textColor="#000000"
-            android:transitionName="username_tran"
-            app:counterMaxLength="15">
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="#004545"
+            app:cardElevation="8dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="#000000" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="175dp"
+                android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:padding="10dp"
+                    android:text="Accept the Policies"
+                    android:textColor="#42A5F5"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/privacy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/privacy_policy"
+                        android:textColor="#42A5F5" />
+
+                    <CheckBox
+                        android:id="@+id/terms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/terms"
+                        android:textColor="#42A5F5" />
+
+                    <CheckBox
+                        android:id="@+id/nameterm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="I Give Permission for Hospitals and the HelPPEr Team to view Location, Phone, and Email"
+                        android:textColor="#42A5F5" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/registerUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#006EC5"
+            android:text="GO"
+            android:textColor="#FFFFFF"
+            android:transitionName="go_tran" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:textColor="#000000" />
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneNo"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        <Button
+            android:id="@+id/sign_up_to_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mobile Phone Number (for Contact)">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:textColor="#000000" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password_reg"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:transitionName="password_tran"
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:textColor="#000000" />
-        </com.google.android.material.textfield.TextInputLayout>
-
+            android:layout_gravity="right"
+            android:layout_margin="5dp"
+            android:background="#000000"
+            android:elevation="0dp"
+            android:text="Have an account? Sign in"
+            android:textColor="#FFFFFF"
+            android:transitionName="login_signup_tran" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/registerUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="#006EC5"
-        android:text="GO"
-        android:textColor="#FFFFFF"
-        android:transitionName="go_tran" />
-
-    <Button
-        android:id="@+id/sign_up_to_in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_margin="5dp"
-        android:background="#000000"
-        android:elevation="0dp"
-        android:text="Have an account? Sign in"
-        android:textColor="#FFFFFF"
-        android:transitionName="login_signup_tran" />
-</LinearLayout>
+</ScrollView>

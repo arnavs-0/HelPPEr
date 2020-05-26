@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.arnav.covid_19hackathonapp.HospitalMap;
+import com.arnav.covid_19hackathonapp.InstructionsAfterHospital;
 import com.arnav.covid_19hackathonapp.R;
 import com.arnav.covid_19hackathonapp.RequestCompletion;
 import com.arnav.covid_19hackathonapp.requests.firebase.HospitalRequestData;
@@ -78,7 +80,10 @@ public class HospitalRequest extends AppCompatActivity {
                             reference.child(phoneNumberFromDB).child("Phone_Number").setValue(phoneNumberFromDB);
                             reference.child(phoneNumberFromDB).child("Email").setValue(emailFromDB);
 
-                            Intent intent = new Intent(getApplicationContext(), RequestCompletion.class);
+                            Intent intent = new Intent(getApplicationContext(), InstructionsAfterHospital.class);
+                            intent.putExtra("phoneNumberFromDB", phoneNumberFromDB);
+                            intent.putExtra("emailFromDB", emailFromDB);
+                            intent.putExtra("nameFromDB", nameFromDB);
                             startActivity(intent);
                             finish();
                         }

@@ -79,6 +79,8 @@ public class FirstRespondersRequest extends AppCompatActivity {
                             reference.child(phoneNumberFromDB).child("Email").setValue(emailFromDB);
 
                             Intent intent = new Intent(getApplicationContext(), RequestCompletion.class);
+                            intent.putExtra("emailFromDB", emailFromDB);
+                            intent.putExtra("nameFromDB", nameFromDB);
                             startActivity(intent);
                             finish();
                         }

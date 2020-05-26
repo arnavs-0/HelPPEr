@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">COVID-19 Hackathon App</string>
+    <string name="title_activity_hospital_map">Map of Donations</string>
+    <string name="privacy_policy"><a href="https://helpperapp.bss.design/privacy.html">By Clicking Go, I have Agreed to the Privacy Policy</a></string>
+    <string name="terms"><a href="https://helperapp.bss.design/terms.html">I Have Agreed to The Terms And Conditions</a></string>
 </resources>

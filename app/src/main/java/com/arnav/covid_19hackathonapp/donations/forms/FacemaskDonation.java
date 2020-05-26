@@ -98,7 +98,10 @@ public class FacemaskDonation extends AppCompatActivity {
                             } else {
                                 reference.child(phoneNumberFromDB).child("Volunteer").setValue("No");
                             }
+                            String integer = "one";
                             Intent intent = new Intent(getApplicationContext(), DonationCompletion.class);
+                            intent.putExtra("emailFromDB", emailFromDB);
+                            intent.putExtra("nameFromDB", nameFromDB);
                             startActivity(intent);
                             finish();
                         }
@@ -214,6 +217,5 @@ public class FacemaskDonation extends AppCompatActivity {
             return true;
         }
     }
-
 
 }

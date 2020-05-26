@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.arnav.covid_19hackathonapp.R;
@@ -25,7 +26,7 @@ public class SignUp extends AppCompatActivity {
     private static final String TAG = "SignUp";
     TextInputLayout regName, regUser, regEmail, regPhone, regPassword;
     Button regBtn, regToLoginBtn;
-
+    CheckBox regPrivacy, regTerms, regAccess;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     private FirebaseAuth mAuth;
@@ -45,12 +46,15 @@ public class SignUp extends AppCompatActivity {
         regPhone = findViewById(R.id.phoneNo);
         regBtn = findViewById(R.id.registerUser);
         regToLoginBtn = findViewById(R.id.sign_up_to_in);
+        regPrivacy = findViewById(R.id.privacy);
+        regTerms = findViewById(R.id.terms);
+        regAccess = findViewById(R.id.nameterm);
         //If register button is clicked
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //make sure everything is valid
-                if (!validateName() | !validatePhone() | !validateUser() | !validateEmail() | !validatePassword()) {
+                if (!validateName() | !validatePhone() | !validateUser() | !validateEmail() | !validatePassword() | !validatePrivacy()) {
                     return;
                 }
                 //validate user
@@ -181,6 +185,20 @@ public class SignUp extends AppCompatActivity {
             regPhone.setError(null);
             regPhone.setErrorEnabled(false);
             return true;
+        }
+    }
+
+    private Boolean validatePrivacy() {
+        if (regPrivacy.isChecked() && regTerms.isChecked() && regAccess.isChecked()) {
+            regPrivacy.setError(null);
+            regTerms.setError(null);
+            regAccess.setError(null);
+            return true;
+        } else {
+            regPrivacy.setError("Must Be Checked");
+            regTerms.setError("Must Be Checked");
+            regAccess.setError("Must Be Checked");
+            return false;
         }
     }
     //if auth is successful move to new activity

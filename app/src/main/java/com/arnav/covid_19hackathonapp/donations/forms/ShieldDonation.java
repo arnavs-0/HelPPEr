@@ -99,6 +99,8 @@ public class ShieldDonation extends AppCompatActivity {
                                 reference.child(phoneNumberFromDB).child("Volunteer").setValue("No");
                             }
                             Intent intent = new Intent(getApplicationContext(), DonationCompletion.class);
+                            intent.putExtra("emailFromDB", emailFromDB);
+                            intent.putExtra("nameFromDB", nameFromDB);
                             startActivity(intent);
                             finish();
                         }
