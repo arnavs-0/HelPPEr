@@ -1,7 +1,7 @@
 # HelPPEr_COVID-19
 Open Source!
 PPE Donation and Request Service during the COVID-19 Pandemic. Incorporation of Donation Sites and Instructions to create PPE
-[HelPPEr Website](http://helpper.tech/index.html)
+[HelPPEr Website](https://www.helpper.tech/)
 
 ## Getting Started
 
