@@ -44,14 +44,14 @@ public class DonationCompletion extends AppCompatActivity {
 
     public void sendMail() throws ExecutionException, InterruptedException {
         //EmailConstants emailconstants = new EmailConstants();
-        SendGrid sendGrid = SendGrid.create("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");
+        SendGrid sendGrid = SendGrid.create("API_KEY");
         Intent intent = getIntent();
         String email = intent.getStringExtra("emailFromDB");
         String name = intent.getStringExtra("nameFromDB");
         SendGridMail mail = new SendGridMail();
         assert email != null;
         mail.addRecipient(email, name);
-        mail.setFrom("sarn248@gmail.com", "HelPPEr");
+        mail.setFrom("EMAIL", "HelPPEr");
         mail.setSubject("Donation Confirmation");
         //mail.setContent("Thank You for your donation, You will receive an email from a hospital or the helpper team in a few days");
         mail.setHtmlContent(EmailConstants.donate);
