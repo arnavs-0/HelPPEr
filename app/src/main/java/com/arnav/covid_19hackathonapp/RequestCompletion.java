@@ -34,7 +34,7 @@ public class RequestCompletion extends AppCompatActivity {
         SendGridMail mail = new SendGridMail();
         assert email != null;
         mail.addRecipient(email, name);
-        mail.setFrom("sarn248@gmail.com", "HelPPEr");
+        mail.setFrom("EMAIL", "HelPPEr");
         mail.setSubject("Request Confirmation");
         //mail.setContent("Thank You for your donation, You will receive an email from a hospital or the helpper team in a few days");
         mail.setHtmlContent(EmailConstants.req);
