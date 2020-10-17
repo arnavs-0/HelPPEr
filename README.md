@@ -5,8 +5,8 @@ PPE Donation and Request Service during the COVID-19 Pandemic. Incorporation of 
 
 ## Getting Started
 
-In progress
-
+Add google-services.json
+Get Sendgrid API Keys
 ### Prerequisites
 
 Must be at least Marshmello (6.0) with an API level of 23
